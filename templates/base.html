@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Solu Africa Academy{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav-bar">
+            <a href="{% url 'academy:home' %}" class="brand">Solu Africa Academy</a>
+            <nav class="nav-links">
+                <a href="{% url 'academy:home' %}">Accueil</a>
+                <a href="{% url 'academy:courses' %}">Formations</a>
+                <a href="{% url 'academy:auth' %}">Connexion</a>
+                <a href="{% url 'academy:dashboard' %}" class="button button-small">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>Solu Africa Academy</h3>
+                <p>Une plateforme de formation pensée pour les talents africains de demain.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="{% url 'academy:home' %}">Accueil</a></li>
+                    <li><a href="{% url 'academy:courses' %}">Formations</a></li>
+                    <li><a href="{% url 'academy:auth' %}">Connexion</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>Email : academy@solu-africa.com</p>
+                <p>Mentorat, projets et employabilité.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

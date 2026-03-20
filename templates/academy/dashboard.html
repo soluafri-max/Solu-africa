@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <span class="eyebrow">Espace apprenant</span>
+        <h1>Tableau de bord</h1>
+        <p>Bienvenue {{ student_name }}, voici un aperçu de ta progression et de tes prochaines étapes.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container dashboard-grid">
+        <article class="card stat-card">
+            <span class="eyebrow">Progression</span>
+            <h2>{{ progress }}%</h2>
+            <p>de ton parcours actuel est déjà complété.</p>
+        </article>
+        <article class="card stat-card">
+            <span class="eyebrow">Prochaine session</span>
+            <h2>{{ next_session }}</h2>
+            <p>Prépare ton atelier pratique et tes exercices.</p>
+        </article>
+        <article class="card stat-card">
+            <span class="eyebrow">Cours actifs</span>
+            <h2>{{ active_courses|length }}</h2>
+            <p>modules en cours cette semaine.</p>
+        </article>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">En cours</span>
+            <h2>Modules suivis</h2>
+        </div>
+        <div class="card-grid">
+            {% for course in active_courses %}
+            <article class="card course-card">
+                <span class="tag">{{ course.level }}</span>
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

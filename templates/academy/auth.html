@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="container auth-grid">
+        <div>
+            <span class="eyebrow">Espace membre</span>
+            <h1>Connexion apprenant</h1>
+            <p>Connecte-toi pour suivre tes modules, accéder aux ressources et continuer ton parcours.</p>
+        </div>
+        <div class="card auth-card">
+            <form class="auth-form">
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="toi@exemple.com">
+
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" placeholder="••••••••">
+
+                <button type="submit" class="button">Se connecter</button>
+            </form>
+            <p class="muted">Pas encore de compte ? Contacte l’équipe Solu Africa Academy.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

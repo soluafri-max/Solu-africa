@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Accueil | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="eyebrow">Plateforme e-learning Django</span>
+            <h1>Apprends Python, Django et la data avec Solu Africa Academy.</h1>
+            <p class="lead">Un frontend clair pour présenter les formations, recruter les apprenants et suivre leur progression.</p>
+            <div class="actions">
+                <a href="{% url 'academy:courses' %}" class="button">Découvrir les formations</a>
+                <a href="{% url 'academy:dashboard' %}" class="button button-secondary">Voir le dashboard</a>
+            </div>
+        </div>
+        <div class="hero-card card">
+            <h2>Pourquoi cette base frontend ?</h2>
+            <ul class="feature-list">
+                {% for feature in features %}
+                <li>{{ feature }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">3 façons en une</span>
+            <h2>Ce que ce starter t’apporte</h2>
+        </div>
+        <div class="info-grid">
+            <article class="card">
+                <h3>1. Frontend existant</h3>
+                <p>Une landing page prête à personnaliser avec CTA, blocs de valeur et navigation.</p>
+            </article>
+            <article class="card">
+                <h3>2. Arborescence claire</h3>
+                <p>Une séparation simple entre les templates Django, les assets statiques et les vues.</p>
+            </article>
+            <article class="card">
+                <h3>3. Première implémentation</h3>
+                <p>Des pages prêtes pour l’accueil, les formations, l’authentification et le tableau de bord.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Aperçu</span>
+            <h2>Formations mises en avant</h2>
+        </div>
+        <div class="card-grid">
+            {% for course in courses %}
+            <article class="card course-card">
+                <span class="tag">{{ course.level }}</span>
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

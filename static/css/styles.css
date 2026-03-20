@@ -1,0 +1,270 @@
+:root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface-alt: #eef3ff;
+    --text: #172033;
+    --muted: #64748b;
+    --primary: #1d4ed8;
+    --primary-dark: #1e3a8a;
+    --accent: #f59e0b;
+    --border: #d9e2f1;
+    --success: #16a34a;
+    --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(245, 247, 251, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-bar,
+.nav-links,
+.actions,
+.course-meta,
+.footer-grid {
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar {
+    justify-content: space-between;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.brand {
+    font-weight: 800;
+    color: var(--primary-dark);
+}
+
+.hero,
+.section,
+.page-header {
+    padding: 4rem 0;
+}
+
+.hero-grid,
+.info-grid,
+.card-grid,
+.auth-grid,
+.dashboard-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.hero-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+}
+
+.info-grid,
+.card-grid,
+.dashboard-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.auth-grid {
+    grid-template-columns: 1fr minmax(320px, 420px);
+    align-items: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    margin-bottom: 1rem;
+}
+
+.lead {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 60ch;
+}
+
+.button,
+button {
+    border: none;
+    border-radius: 999px;
+    background: var(--primary);
+    color: white;
+    padding: 0.9rem 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: var(--shadow);
+}
+
+.button:hover,
+button:hover {
+    transform: translateY(-1px);
+    background: var(--primary-dark);
+}
+
+.button-secondary {
+    background: white;
+    color: var(--primary-dark);
+    border: 1px solid var(--border);
+    box-shadow: none;
+}
+
+.button-small {
+    padding: 0.65rem 1rem;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.hero-card {
+    background: linear-gradient(180deg, #ffffff, #edf4ff);
+}
+
+.feature-list {
+    padding-left: 1.25rem;
+    margin: 0;
+}
+
+.section-alt {
+    background: var(--surface-alt);
+}
+
+.section-heading {
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+    background: rgba(29, 78, 216, 0.1);
+    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.course-card p,
+.muted,
+.page-header p,
+.stat-card p {
+    color: var(--muted);
+}
+
+.auth-form {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.auth-form input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 0.9rem 1rem;
+    font: inherit;
+}
+
+.text-link {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.site-footer {
+    padding: 2rem 0 3rem;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+.footer-grid {
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.footer-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-grid li + li {
+    margin-top: 0.5rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 860px) {
+    .hero-grid,
+    .info-grid,
+    .card-grid,
+    .auth-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-bar,
+    .nav-links,
+    .footer-grid {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

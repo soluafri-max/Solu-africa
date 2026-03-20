@@ -1,0 +1,32 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="lesson-layout">
+  <article class="content-card lesson-stage">
+    <div class="video-placeholder">
+      <span>Lecteur vidéo HD</span>
+      <strong>{{ lesson.title }}</strong>
+      <p>{{ lesson.duration }} • reprise automatique activée</p>
+    </div>
+    <div class="progress-block">
+      <div class="progress-labels">
+        <span>Progression vidéo</span>
+        <strong>{{ lesson.completion }}%</strong>
+      </div>
+      <div class="progress-bar"><span style="width: {{ lesson.completion }}%"></span></div>
+    </div>
+    <p>{{ lesson.description }}</p>
+  </article>
+
+  <aside class="content-card lesson-sidebar">
+    <p class="eyebrow">Leçons du module</p>
+    <ul class="feed-list">
+      <li><strong>1.</strong> Comprendre le marché</li>
+      <li class="active"><strong>2.</strong> {{ lesson.title }}</li>
+      <li><strong>3.</strong> Construire une proposition de valeur</li>
+      <li><strong>4.</strong> Quiz de validation</li>
+    </ul>
+    <a class="button" href="{% url 'dashboard' %}">Marquer comme terminée</a>
+  </aside>
+</section>
+{% endblock %}

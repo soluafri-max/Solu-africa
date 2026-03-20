@@ -1,0 +1,395 @@
+openapi: 3.1.0
+info:
+  title: Solu Africa Academy API
+  version: 1.0.0
+  description: >-
+    Spécification OpenAPI de référence pour le backend Django / Django REST Framework
+    de Solu Africa Academy.
+servers:
+  - url: https://api.soluafricaacademy.com/api/v1
+    description: Production
+  - url: https://staging-api.soluafricaacademy.com/api/v1
+    description: Staging
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Request completed successfully.
+        data:
+          type: object
+          additionalProperties: true
+    RegisterRequest:
+      type: object
+      required: [first_name, last_name, email, password, password_confirm, accepted_terms]
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        password:
+          type: string
+          format: password
+        password_confirm:
+          type: string
+          format: password
+        country:
+          type: string
+        accepted_terms:
+          type: boolean
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+    Program:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        slug:
+          type: string
+        short_description:
+          type: string
+        level:
+          type: string
+        language:
+          type: string
+        subscription_required:
+          type: boolean
+        unlock_interval_days:
+          type: integer
+    Enrollment:
+      type: object
+      properties:
+        id:
+          type: integer
+        program_id:
+          type: integer
+        status:
+          type: string
+          enum: [active, completed, suspended, cancelled]
+        enrolled_at:
+          type: string
+          format: date-time
+    WatchProgressRequest:
+      type: object
+      properties:
+        watched_seconds:
+          type: integer
+        last_position_seconds:
+          type: integer
+        completion_percent:
+          type: number
+          format: float
+        is_completed:
+          type: boolean
+security:
+  - bearerAuth: []
+paths:
+  /auth/register:
+    post:
+      summary: Inscription utilisateur
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Compte créé
+  /auth/login:
+    post:
+      summary: Connexion utilisateur
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: JWT retournés
+  /auth/me:
+    get:
+      summary: Profil courant
+      responses:
+        '200':
+          description: Profil utilisateur
+  /catalog/programs:
+    get:
+      summary: Liste des programmes publiés
+      responses:
+        '200':
+          description: Liste programmes
+    post:
+      summary: Créer un programme
+      responses:
+        '201':
+          description: Programme créé
+  /catalog/programs/{programId}:
+    get:
+      summary: Détail d’un programme
+      parameters:
+        - in: path
+          name: programId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Programme détaillé
+    patch:
+      summary: Modifier un programme
+      parameters:
+        - in: path
+          name: programId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Programme mis à jour
+  /catalog/programs/{programId}/modules:
+    get:
+      summary: Lister les modules d’un programme
+      parameters:
+        - in: path
+          name: programId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Modules retournés
+    post:
+      summary: Créer un module
+      parameters:
+        - in: path
+          name: programId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Module créé
+  /catalog/modules/{moduleId}/lessons:
+    get:
+      summary: Lister les leçons d’un module
+      parameters:
+        - in: path
+          name: moduleId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Leçons retournées
+  /enrollments:
+    post:
+      summary: Inscrire l’utilisateur à un programme
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                program_id:
+                  type: integer
+      responses:
+        '201':
+          description: Inscription créée
+  /enrollments/my:
+    get:
+      summary: Mes inscriptions
+      responses:
+        '200':
+          description: Liste de mes inscriptions
+  /enrollments/{enrollmentId}/unlock-status:
+    get:
+      summary: Statut de déblocage des modules
+      parameters:
+        - in: path
+          name: enrollmentId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Planning de déblocage
+  /learning/programs/{programId}/progress:
+    get:
+      summary: Progression sur un programme
+      parameters:
+        - in: path
+          name: programId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Progression détaillée
+  /learning/lessons/{lessonId}/watch-progress:
+    post:
+      summary: Mettre à jour la progression vidéo
+      parameters:
+        - in: path
+          name: lessonId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WatchProgressRequest'
+      responses:
+        '200':
+          description: Progression enregistrée
+  /learning/lessons/{lessonId}/complete:
+    post:
+      summary: Marquer une leçon comme terminée
+      parameters:
+        - in: path
+          name: lessonId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Leçon terminée
+  /quizzes/modules/{moduleId}:
+    get:
+      summary: Lister les quiz d’un module
+      parameters:
+        - in: path
+          name: moduleId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Quiz retournés
+    post:
+      summary: Créer un quiz pour un module
+      parameters:
+        - in: path
+          name: moduleId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Quiz créé
+  /quizzes/{quizId}/submit:
+    post:
+      summary: Soumettre une tentative de quiz
+      parameters:
+        - in: path
+          name: quizId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Score et résultat
+  /billing/plans:
+    get:
+      summary: Lister les plans tarifaires
+      responses:
+        '200':
+          description: Plans retournés
+    post:
+      summary: Créer un plan tarifaire
+      responses:
+        '201':
+          description: Plan créé
+  /billing/subscriptions/checkout-session:
+    post:
+      summary: Initier une session de paiement abonnement
+      responses:
+        '200':
+          description: Session checkout créée
+  /billing/subscriptions/me:
+    get:
+      summary: Récupérer mon abonnement actif
+      responses:
+        '200':
+          description: Abonnement courant
+  /billing/webhooks/stripe:
+    post:
+      summary: Webhook Stripe
+      security: []
+      responses:
+        '200':
+          description: Evénement traité
+  /certificates/generate:
+    post:
+      summary: Générer un certificat si éligible
+      responses:
+        '201':
+          description: Certificat créé
+  /certificates/verify/{certificateNumber}:
+    get:
+      summary: Vérifier publiquement un certificat
+      security: []
+      parameters:
+        - in: path
+          name: certificateNumber
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Certificat valide ou non
+  /community/posts:
+    get:
+      summary: Lister les posts communautaires
+      responses:
+        '200':
+          description: Posts retournés
+    post:
+      summary: Créer un post communautaire
+      responses:
+        '201':
+          description: Post créé
+  /analytics/overview:
+    get:
+      summary: Vue synthétique admin
+      responses:
+        '200':
+          description: KPIs administrateur
+  /system/health:
+    get:
+      summary: Vérification simple du service
+      security: []
+      responses:
+        '200':
+          description: Service disponible

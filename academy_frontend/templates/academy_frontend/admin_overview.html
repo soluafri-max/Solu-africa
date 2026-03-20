@@ -1,0 +1,32 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="stat-grid">
+  {% for card in admin_cards %}
+    <article class="content-card stat-card">
+      <span>{{ card.label }}</span>
+      <strong>{{ card.value }}</strong>
+      <p>{{ card.trend }}</p>
+    </article>
+  {% endfor %}
+</section>
+
+<section class="feature-layout">
+  <article class="content-card">
+    <p class="eyebrow">Pilotage plateforme</p>
+    <h2>Actions administrateur</h2>
+    <ul class="check-list">
+      <li>Publier un nouveau programme ou module</li>
+      <li>Suivre l’évolution des abonnements et du churn</li>
+      <li>Modérer la communauté et générer les certificats</li>
+      <li>Activer le mode accéléré à 15 jours si nécessaire</li>
+    </ul>
+  </article>
+
+  <article class="content-card emphasis-card">
+    <p class="eyebrow">Vue rapide</p>
+    <h2>Récurrence & pédagogie</h2>
+    <p>Cette interface admin met en avant les métriques les plus importantes pour piloter les revenus récurrents, la progression des étudiants et la qualité pédagogique.</p>
+  </article>
+</section>
+{% endblock %}

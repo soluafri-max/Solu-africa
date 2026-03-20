@@ -1,0 +1,48 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="feature-layout">
+  <article class="content-card emphasis-card">
+    <span class="pill">{{ program.category }}</span>
+    <h2>{{ program.title }}</h2>
+    <p>{{ program.description }}</p>
+    <div class="meta-row stacked-on-mobile">
+      <span>Niveau : {{ program.level }}</span>
+      <span>Durée : {{ program.duration }}</span>
+      <span>{{ program.students }} étudiants</span>
+    </div>
+    <div class="hero-actions">
+      <a class="button" href="{% url 'dashboard' %}">S’inscrire / Continuer</a>
+      <a class="button button-secondary" href="{% url 'lesson_player' program.slug %}">Voir une leçon</a>
+    </div>
+  </article>
+
+  <article class="content-card">
+    <p class="eyebrow">Atouts du parcours</p>
+    <ul class="check-list">
+      {% for item in program.highlights %}
+        <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Structure pédagogique</p>
+      <h2>Modules et calendrier</h2>
+    </div>
+  </div>
+
+  <div class="timeline">
+    {% for module in program.modules %}
+      <div class="timeline-item">
+        <strong>{{ module.title }}</strong>
+        <span>{{ module.status }}</span>
+        <p>{{ module.unlock }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

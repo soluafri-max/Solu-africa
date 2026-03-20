@@ -1,0 +1,30 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Forum étudiants</p>
+      <h2>Communauté d’apprentissage</h2>
+    </div>
+    <a class="button" href="#">Créer un post</a>
+  </div>
+
+  <div class="card-grid two-cols">
+    {% for post in community_posts %}
+      <article class="content-card post-card">
+        <div class="program-meta">
+          <span class="pill">{{ post.tag }}</span>
+          <span>{{ post.role }}</span>
+        </div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+        <div class="meta-row">
+          <span>Par {{ post.author }}</span>
+          <span>{{ post.replies }} réponses • {{ post.likes }} likes</span>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="hero-grid">
+  <div class="hero-card hero-primary">
+    <p class="eyebrow">Former les entrepreneurs africains</p>
+    <h2>Une académie digitale pensée pour l’action, la progression et la récurrence.</h2>
+    <p>Des parcours vidéo structurés, un déblocage pédagogique des modules, des quiz de validation, une certification finale et une vraie communauté d’entraide.</p>
+    <div class="hero-actions">
+      <a class="button" href="{% url 'catalogue' %}">Explorer les programmes</a>
+      <a class="button button-secondary" href="{% url 'program_detail' featured_program.slug %}">Voir le programme phare</a>
+    </div>
+  </div>
+
+  <div class="hero-card hero-stat">
+    <p class="eyebrow">KPIs plateforme</p>
+    <div class="stat-grid compact">
+      <article><strong>{{ stats.students }}</strong><span>Étudiants</span></article>
+      <article><strong>{{ stats.subscriptions }}</strong><span>Abonnements</span></article>
+      <article><strong>{{ stats.completion_rate }}</strong><span>Taux de complétion</span></article>
+      <article><strong>{{ stats.monthly_revenue }}</strong><span>Revenus mensuels</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Programme en vedette</p>
+      <h2>{{ featured_program.title }}</h2>
+    </div>
+    <a class="button button-secondary" href="{% url 'program_detail' featured_program.slug %}">Détails</a>
+  </div>
+
+  <div class="feature-layout">
+    <article class="content-card emphasis-card">
+      <span class="pill">{{ featured_program.category }}</span>
+      <p>{{ featured_program.description }}</p>
+      <ul class="check-list">
+        {% for item in featured_program.highlights %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+
+    <article class="content-card">
+      <h3>Déblocage pédagogique</h3>
+      <div class="timeline">
+        {% for module in featured_program.modules %}
+          <div class="timeline-item">
+            <strong>{{ module.title }}</strong>
+            <span>{{ module.status }}</span>
+            <p>{{ module.unlock }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Expérience utilisateur</p>
+      <h2>Interfaces clés de la plateforme</h2>
+    </div>
+  </div>
+
+  <div class="card-grid three-cols">
+    <article class="content-card">
+      <h3>Catalogue intelligent</h3>
+      <p>Classement par catégorie, niveau, langue et statut de publication pour faciliter la découverte des formations.</p>
+    </article>
+    <article class="content-card">
+      <h3>Dashboard étudiant</h3>
+      <p>Vue consolidée de la progression, des quiz à venir, des certificats et du calendrier de déblocage des modules.</p>
+    </article>
+    <article class="content-card">
+      <h3>Communauté intégrée</h3>
+      <p>Forum structuré pour poser des questions, partager des retours d’expérience et interagir avec l’équipe pédagogique.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

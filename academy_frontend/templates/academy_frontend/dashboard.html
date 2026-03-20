@@ -1,0 +1,72 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="stat-grid">
+  <article class="content-card stat-card">
+    <span>Programme actif</span>
+    <strong>{{ current_program.title }}</strong>
+    <p>{{ current_program.progress }}% terminé</p>
+  </article>
+  <article class="content-card stat-card">
+    <span>Prochain module</span>
+    <strong>Étude de marché</strong>
+    <p>Déblocage le 31 mars 2026</p>
+  </article>
+  <article class="content-card stat-card">
+    <span>Quiz à passer</span>
+    <strong>1 quiz en attente</strong>
+    <p>Score minimum requis : 70%</p>
+  </article>
+  <article class="content-card stat-card">
+    <span>Certification</span>
+    <strong>Non encore débloquée</strong>
+    <p>Disponible après validation du parcours</p>
+  </article>
+</section>
+
+<section class="feature-layout">
+  <article class="content-card">
+    <div class="section-header minor">
+      <div>
+        <p class="eyebrow">À faire</p>
+        <h2>Plan d’action étudiant</h2>
+      </div>
+    </div>
+    <ul class="check-list">
+      {% for task in tasks %}
+        <li>{{ task }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  <article class="content-card emphasis-card">
+    <p class="eyebrow">Notifications</p>
+    <h2>Ce qui vous attend</h2>
+    <ul class="feed-list">
+      {% for notification in notifications %}
+        <li>{{ notification }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+</section>
+
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Déblocage modules</p>
+      <h2>{{ current_program.title }}</h2>
+    </div>
+    <a class="button button-secondary" href="{% url 'lesson_player' current_program.slug %}">Continuer la leçon</a>
+  </div>
+
+  <div class="timeline">
+    {% for module in current_program.modules %}
+      <div class="timeline-item">
+        <strong>{{ module.title }}</strong>
+        <span>{{ module.status }}</span>
+        <p>{{ module.unlock }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'academy_frontend/base.html' %}
+
+{% block content %}
+<section class="section-block">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Catalogue</p>
+      <h2>Programmes disponibles</h2>
+    </div>
+    <div class="filter-bar">
+      <span class="pill">Entrepreneuriat</span>
+      <span class="pill">Éducation financière</span>
+      <span class="pill">Débutant à avancé</span>
+    </div>
+  </div>
+
+  <div class="card-grid two-cols">
+    {% for program in programs %}
+      <article class="content-card program-card">
+        <div class="program-meta">
+          <span class="pill">{{ program.category }}</span>
+          <span>{{ program.level }}</span>
+        </div>
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+        <div class="progress-block">
+          <div class="progress-labels">
+            <span>Progression moyenne</span>
+            <strong>{{ program.progress }}%</strong>
+          </div>
+          <div class="progress-bar"><span style="width: {{ program.progress }}%"></span></div>
+        </div>
+        <div class="meta-row">
+          <span>{{ program.duration }}</span>
+          <span>{{ program.students }} étudiants</span>
+        </div>
+        <a class="button" href="{% url 'program_detail' program.slug %}">Voir le programme</a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

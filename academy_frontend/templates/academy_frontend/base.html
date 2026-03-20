@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solu Africa Academy — {{ page_title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'academy_frontend/styles.css' %}">
+</head>
+<body>
+  <div class="page-shell">
+    <aside class="sidebar">
+      <div>
+        <a class="brand" href="{% url 'home' %}">
+          <span class="brand-mark">SA</span>
+          <div>
+            <strong>Solu Africa</strong>
+            <span>Academy</span>
+          </div>
+        </a>
+
+        <nav class="nav-links">
+          <a href="{% url 'home' %}">Accueil</a>
+          <a href="{% url 'catalogue' %}">Catalogue</a>
+          <a href="{% url 'dashboard' %}">Dashboard</a>
+          <a href="{% url 'community' %}">Communauté</a>
+          <a href="{% url 'admin_overview' %}">Admin</a>
+        </nav>
+      </div>
+
+      <div class="side-card">
+        <p class="eyebrow">Abonnement actif</p>
+        <h3>Plan Mensuel Academy</h3>
+        <p>Votre prochaine facturation est prévue le <strong>31 mars 2026</strong>.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Plateforme e-learning</p>
+          <h1>{{ page_title }}</h1>
+        </div>
+        <div class="topbar-actions">
+          <input class="search-input" type="search" placeholder="Rechercher un programme, une leçon, un post...">
+          <a class="button button-secondary" href="{% url 'catalogue' %}">Voir le catalogue</a>
+          <a class="button" href="{% url 'dashboard' %}">Mon espace</a>
+        </div>
+      </header>
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>

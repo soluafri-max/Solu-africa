@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion apprenant | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="container auth-grid">
+        <aside class="auth-cover reveal">
+            <span class="eyebrow">Espace membre</span>
+            <h1>Bienvenue dans l’univers SA Academy</h1>
+            <p>Connecte-toi pour accéder à tes cours, tes sessions live, tes ressources premium et ton suivi de progression.</p>
+            <div class="auth-points">
+                <div class="auth-point">
+                    <strong>Parcours personnalisés</strong>
+                    <small>Selon ton niveau et tes objectifs business.</small>
+                </div>
+                <div class="auth-point">
+                    <strong>Accompagnement mentor</strong>
+                    <small>Feedback concret sur ton avancée chaque semaine.</small>
+                </div>
+                <div class="auth-point">
+                    <strong>Communauté active</strong>
+                    <small>Échanges entre entrepreneurs et experts.</small>
+                </div>
+                <div class="auth-point">
+                    <strong>Ressources exclusives</strong>
+                    <small>Templates, checklists et playbooks actionnables.</small>
+                </div>
+            </div>
+        </aside>
+
+        <div class="card auth-card reveal">
+            <h2>Connexion apprenant</h2>
+            <p class="muted">Renseigne tes accès pour reprendre ton parcours.</p>
+            <form class="auth-form">
+                <label for="email">Email professionnel</label>
+                <input id="email" type="email" placeholder="toi@entreprise.com" autocomplete="email">
+
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" placeholder="••••••••" autocomplete="current-password">
+
+                <div class="form-row">
+                    <div>
+                        <label for="track">Parcours principal</label>
+                        <select id="track">
+                            <option>Business Fundamentals</option>
+                            <option>Digital Marketing</option>
+                            <option>E-commerce & Sales</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="timezone">Fuseau horaire</label>
+                        <select id="timezone">
+                            <option>Afrique de l’Ouest (UTC+0)</option>
+                            <option>Afrique centrale (UTC+1)</option>
+                            <option>Afrique de l’Est (UTC+3)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="button">Se connecter</button>
+            </form>
+            <p class="muted" style="margin-top: 1rem;">Pas encore de compte ? <a class="text-link" href="mailto:academy@solu-africa.com">Contacte l’équipe admission</a>.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

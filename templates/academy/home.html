@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %}Solu Africa Academy | Formations business et compétences digitales{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="eyebrow">Solu Africa Academy</span>
+            <h1>Learn Business. Build Wealth.</h1>
+            <p class="lead">Une académie moderne, authentique et orientée résultats pour former des entrepreneurs et professionnels africains capables de créer, structurer et scaler leurs activités.</p>
+            <div class="actions">
+                <a href="{% url 'academy:courses' %}" class="button">Découvrir nos programmes</a>
+                <a href="{% url 'academy:auth' %}" class="button button-secondary">Essai gratuit</a>
+            </div>
+            <div class="trust-row">
+                <span class="trust-pill">+2 500 apprenants formés</span>
+                <span class="trust-pill">Mentorat hebdomadaire</span>
+                <span class="trust-pill">Certificats professionnalisants</span>
+            </div>
+        </div>
+        <aside class="hero-visual card reveal">
+            <h2>Pourquoi choisir SA Academy ?</h2>
+            <p>Un parcours conçu pour transformer les compétences en revenus mesurables.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <strong>95%</strong>
+                    <small>satisfaction apprenants</small>
+                </div>
+                <div class="hero-stat">
+                    <strong>120+</strong>
+                    <small>modules premium</small>
+                </div>
+                <div class="hero-stat">
+                    <strong>24/7</strong>
+                    <small>accès plateforme</small>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Valeur & impact</span>
+            <h2>Une expérience d’apprentissage fluide et orientée exécution</h2>
+            <p class="lead">Chaque parcours est pensé pour faire passer l’apprenant de la théorie à l’action avec un accompagnement concret.</p>
+        </div>
+        <div class="info-grid">
+            <article class="card reveal">
+                <h3>Parcours business structurés</h3>
+                <p>Des modules progressifs qui te guident de l’idée à la mise en marché.</p>
+                <ul class="check-list">
+                    <li>Roadmap claire par niveau</li>
+                    <li>Cas pratiques africains</li>
+                </ul>
+            </article>
+            <article class="card reveal">
+                <h3>Coaching & communauté</h3>
+                <p>Des sessions live avec experts et une communauté active pour rester motivé.</p>
+                <ul class="check-list">
+                    <li>Q&A hebdomadaire</li>
+                    <li>Suivi personnalisé</li>
+                </ul>
+            </article>
+            <article class="card reveal">
+                <h3>Compétences monétisables</h3>
+                <p>Apprends à convertir tes compétences en offres rentables et scalables.</p>
+                <ul class="check-list">
+                    <li>Templates opérationnels</li>
+                    <li>Playbooks de vente</li>
+                </ul>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Catalogue</span>
+            <h2>Programmes en vedette</h2>
+        </div>
+        <div class="card-grid">
+            {% for course in courses %}
+            <article class="card course-card reveal">
+                <div class="course-meta">
+                    <span class="tag">{{ course.level }}</span>
+                    <span>Format hybride</span>
+                </div>
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                <div class="cta-inline">
+                    <a href="{% url 'academy:courses' %}" class="text-link">Voir le détail →</a>
+                </div>
+            </article>
+            {% endfor %}
+            <article class="card course-card reveal">
+                <div class="course-meta">
+                    <span class="tag tag-premium">Premium</span>
+                    <span>12 semaines</span>
+                </div>
+                <h3>Business Growth & Leadership</h3>
+                <p>Un programme intensif pour structurer, automatiser et scaler une entreprise africaine moderne.</p>
+                <div class="cta-inline">
+                    <a href="{% url 'academy:auth' %}" class="text-link">Candidater maintenant →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container cta-banner reveal">
+        <div>
+            <span class="eyebrow">Prêt à passer au niveau supérieur ?</span>
+            <h2>Démarre ton parcours Solu Africa Academy aujourd’hui.</h2>
+            <p>Rejoins la prochaine cohorte et bâtis une activité solide avec des méthodes éprouvées.</p>
+        </div>
+        <a href="{% url 'academy:auth' %}" class="button">Rejoindre la cohorte</a>
+    </div>
+</section>
+{% endblock %}

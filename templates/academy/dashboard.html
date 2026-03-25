@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard apprenant | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container reveal">
+        <span class="eyebrow">Espace apprenant</span>
+        <h1>Bienvenue {{ student_name }}</h1>
+        <p>Voici ton cockpit d’apprentissage : progression, sessions à venir, cours actifs et prochaines actions business.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container dashboard-grid">
+        <article class="card stat-card reveal">
+            <span class="eyebrow">Progression globale</span>
+            <h2>{{ progress }}%</h2>
+            <div class="progress-wrap">
+                <div class="progress-bar" style="width: {{ progress }}%;"></div>
+            </div>
+            <p>Tu avances de façon régulière. Continue ce rythme.</p>
+        </article>
+        <article class="card stat-card reveal">
+            <span class="eyebrow">Prochaine session live</span>
+            <h2>{{ next_session }}</h2>
+            <p>Thème : Positionnement et offre irrésistible.</p>
+        </article>
+        <article class="card stat-card reveal">
+            <span class="eyebrow">Cours actifs</span>
+            <h2>{{ active_courses|length }}</h2>
+            <p>Programmes en suivi actif sur ton compte.</p>
+        </article>
+        <article class="card stat-card reveal">
+            <span class="eyebrow">Objectif du mois</span>
+            <h2>+30%</h2>
+            <p>Amélioration de ton tunnel de conversion.</p>
+        </article>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Modules en cours</span>
+            <h2>Ton parcours actif</h2>
+        </div>
+        <div class="card-grid">
+            {% for course in active_courses %}
+            <article class="card course-card reveal">
+                <div class="course-meta">
+                    <span class="tag">{{ course.level }}</span>
+                    <span>En progression</span>
+                </div>
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                <div class="progress-wrap">
+                    <div class="progress-bar" style="width: 72%;"></div>
+                </div>
+            </article>
+            {% endfor %}
+            <article class="card course-card reveal">
+                <div class="course-meta">
+                    <span class="tag tag-premium">Coaching</span>
+                    <span>Cette semaine</span>
+                </div>
+                <h3>Session stratégique 1:1</h3>
+                <p>Revue de ton plan d’action, priorités et optimisations business.</p>
+                <a href="{% url 'academy:auth' %}" class="text-link">Réserver un créneau →</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container info-grid">
+        <article class="card reveal">
+            <h3>Checklist hebdomadaire</h3>
+            <ul class="check-list">
+                <li>Terminer 2 leçons du module en cours</li>
+                <li>Publier ton offre sur ton canal principal</li>
+                <li>Participer au live Q&A du samedi</li>
+            </ul>
+        </article>
+        <article class="card reveal">
+            <h3>Ressources recommandées</h3>
+            <ul class="feature-list">
+                <li>Template landing page à conversion élevée</li>
+                <li>Playbook email nurturing 7 jours</li>
+                <li>Script d’appel client premium</li>
+            </ul>
+        </article>
+        <article class="card reveal">
+            <h3>Roadmap prochaine étape</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Jour 1 à 3</strong>
+                    <span>Optimiser ton positionnement et ton message.</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>Jour 4 à 6</strong>
+                    <span>Déployer ton funnel d’acquisition.</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>Jour 7</strong>
+                    <span>Analyser les métriques et ajuster l’offre.</span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

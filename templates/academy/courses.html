@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Catalogue des formations | Solu Africa Academy{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container reveal">
+        <span class="eyebrow">Catalogue officiel</span>
+        <h1>Formations business & digital prêtes à l’emploi</h1>
+        <p>Des programmes pratiques, un accompagnement premium, et une pédagogie centrée sur les résultats terrain.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="benefit-grid">
+            <article class="card reveal">
+                <h3>Approche orientée ROI</h3>
+                <p>Chaque module vise un résultat mesurable : acquisition client, vente, structuration ou productivité.</p>
+            </article>
+            <article class="card reveal">
+                <h3>Mentors expérimentés</h3>
+                <p>Tu progresses avec des experts business et praticiens du marché africain.</p>
+            </article>
+            <article class="card reveal">
+                <h3>Parcours certifiants</h3>
+                <p>Valorise ton niveau avec des certifications et un portfolio orienté carrière.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container card-grid">
+        {% for course in courses %}
+        <article class="card course-card reveal">
+            <div class="course-meta">
+                <span class="tag">{{ course.level }}</span>
+                <span>8 à 12 semaines</span>
+            </div>
+            <h2>{{ course.title }}</h2>
+            <p>{{ course.description }}</p>
+            <ul class="feature-list">
+                <li>Sessions vidéo + live mentoring</li>
+                <li>Fiches action & templates opérationnels</li>
+                <li>Évaluation finale avec feedback expert</li>
+            </ul>
+            <div class="cta-inline">
+                <a href="{% url 'academy:auth' %}" class="button button-small">Je m’inscris</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container cta-banner reveal">
+        <div>
+            <span class="eyebrow">Admission ouverte</span>
+            <h2>Réserve ta place pour la prochaine session.</h2>
+            <p>Nombre de places limité pour garantir un accompagnement personnalisé.</p>
+        </div>
+        <a href="{% url 'academy:auth' %}" class="button">Commencer maintenant</a>
+    </div>
+</section>
+{% endblock %}

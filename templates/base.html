@@ -5,21 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Solu Africa Academy{% endblock %}</title>
+    <meta name="description" content="Solu Africa Academy - Learn Business. Build Wealth.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
     <header class="site-header">
         <div class="container nav-bar">
-            <a href="{% url 'academy:home' %}" class="brand">Solu Africa Academy</a>
+            <a href="{% url 'academy:home' %}" class="brand" aria-label="Solu Africa Academy - Accueil">
+                <span class="brand-mark">SA</span>
+                <span class="brand-text">
+                    <span class="brand-title">Solu Africa Academy</span>
+                    <span class="brand-tagline">Learn Business · Build Wealth</span>
+                </span>
+            </a>
             <nav class="nav-links">
                 <a href="{% url 'academy:home' %}">Accueil</a>
                 <a href="{% url 'academy:courses' %}">Formations</a>
                 <a href="{% url 'academy:auth' %}">Connexion</a>
-                <a href="{% url 'academy:dashboard' %}" class="button button-small">Dashboard</a>
+                <a href="{% url 'academy:dashboard' %}" class="button button-small">Mon dashboard</a>
             </nav>
         </div>
     </header>
@@ -32,21 +39,26 @@
         <div class="container footer-grid">
             <div>
                 <h3>Solu Africa Academy</h3>
-                <p>Une plateforme de formation pensée pour les talents africains de demain.</p>
+                <p>Plateforme premium de formation business & compétences digitales pour entrepreneurs et talents africains.</p>
             </div>
             <div>
                 <h4>Navigation</h4>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="{% url 'academy:home' %}">Accueil</a></li>
-                    <li><a href="{% url 'academy:courses' %}">Formations</a></li>
-                    <li><a href="{% url 'academy:auth' %}">Connexion</a></li>
+                    <li><a href="{% url 'academy:courses' %}">Catalogue</a></li>
+                    <li><a href="{% url 'academy:auth' %}">Espace membre</a></li>
+                    <li><a href="{% url 'academy:dashboard' %}">Dashboard</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Contact</h4>
                 <p>Email : academy@solu-africa.com</p>
-                <p>Mentorat, projets et employabilité.</p>
+                <p>Téléphone : +237 6 99 00 00 00</p>
+                <p>Yaoundé · Douala · Online</p>
             </div>
+        </div>
+        <div class="container footer-note">
+            © {% now 'Y' %} Solu Africa Academy — Tous droits réservés.
         </div>
     </footer>
 
